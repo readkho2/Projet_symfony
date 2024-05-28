@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pieds Parfaits - Panier</title>
+    <style>
+       body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .logo img {
+        height: 50px;
+        margin-right: 10px;
+    }
+
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: #f0f0f0;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        margin-right: 20px;
+    }
+
+    .product {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .product img {
+        width: 100px;
+        height: auto;
+    }
+
+    .product-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .product-title {
+        margin-bottom: 10px;
+    }
+
+    .product-price {
+        font-weight: bold;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #f0f0f0;
+        width: 100%;
+    }
+
+    .footer img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        width: 100%;
+    }
+
+    .cart-item img {
+        width: 100px;
+        height: auto;
+    }
+
+    .cart-item-details {
+        flex-grow: 1;
+        margin-left: 10px;
+    }
+
+    .cart-item-title {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .cart-item-price {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    button {
+       background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+    }
+
+    button:hover {
+   background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div class="logo">
+                <img src="https://thumbs.dreamstime.com/z/fila-reebok-adidas-nike-brooks-puma-new-balance-mizuno-asics-logos-sports-equipment-sportswear-company-kyiv-ukraine-196926314.jpg?w=360" alt="Pieds Parfaits">
+                <span>VOTRE PANIER</span>
+            </div>
+            <div class="cart">
+                <a href="produits.html">Retour aux produits</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="cart-items"></div>
+        <div>
+            <strong>Total : </strong><span id="total-price">0,00 €</span>
+        </div>
+        <button onclick="payer()">PAYER</button>
+    </div>
+
+    <footer class="footer">
+        <p>© 2023 Pieds Parfaits. Tous droits réservés.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function()
+         document.addEventListener('DOMContentLoaded', function() {
+            // Récupérer les éléments du panier depuis le stockage local
+            const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+
+            // Afficher les éléments du panier
+            const cartItemsContainer = document.getElementById('cart-items');
+            if (cartItems && cartItems.length > 0) {
+                cartItems.forEach(item => {
+                    const cartItemElement = document.createElement('div');
+                  cartItemElement.classList.add('cart-item');
+                    cartItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">${item.price.toFixed(2)} €</div>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+            } else {
+                cartItemsContainer.innerHTML = '<p>Le panier est vide.</p>';
+            }
+
+            // Calculer et afficher le total
+            const totalPriceElement = document.getElementById('total-price');
+            const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+            totalPriceElement.textContent = totalPrice.toFixed(2) + ' €';
+        });
+

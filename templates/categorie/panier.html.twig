@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Votre Panier</title>
+		<style>
+			.cart-item {
+				display: flex;
+				align-items: center;
+				margin-bottom: 10px;
+			}
+			.cart-item img {
+				width: 100px;
+				height: auto;
+				margin-right: 20px;
+			}
+			.cart-item-details {
+				flex-grow: 1;
+			}
+			.cart-item-quantity {
+				display: flex;
+				align-items: center;
+			}
+			.cart-item-quantity input {
+				width: 50px;
+				margin-left: 10px;
+				margin-right: 10px;
+				text-align: center;
+			}
+			.cart-item-remove {
+				cursor: pointer;
+				color: red;
+				margin-left: 20px;
+			}
+             .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+		</style>
+	</head>
+	<body>
+		<h1>Votre Panier</h1>
+		<div id="cart-container">
+			{% if cart is not empty %}
+				<ul id="cart-items">
+					{% for item in cart %}
+						<li class="cart-item" data-id="{{ item.id }}">
+							<img src="{{ item.image }}" alt="{{ item.name }}">
+							<div class="cart-item-details">
+								<span>{{ item.name }}</span>
+								<span>{{ item.price }}
+									€</span>
+								<button class="cart-item-remove">Supprimer</button>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+				<div>
+<a href="{{ path('paiement') }}" class="btn btn-primary">PAYER</a>
+			{% else %}
+				<p>Votre panier est vide.</p>
+			{% endif %}
+		</div>
+
+		<footer class="footer">
+			<p>© 2023 Pieds Parfaits. Tous droits réservés.</p>
+		</footer>
+
+		<script>
+
+			document.addEventListener('DOMContentLoaded', function () {
+				// Update cart total
+				function updateTotal() {
+					let total = 0;
+					document.querySelectorAll('.cart-item').forEach(item => {
+						const quantity = parseInt(item.querySelector('input').value);
+						const price = parseFloat(item.querySelector('.cart-item-details span:nth-of-type(2)').textContent);
+						total += quantity * price;
+});
+					document.getElementById('cart-total').textContent = total.toFixed(2);
+				}
+
+				// Remove item from cart
+				document.querySelectorAll('.cart-item-remove').forEach(button => {
+					button.addEventListener('click', function () {
+						const itemElement = button.closest('.cart-item');
+						const itemId = itemElement.getAttribute('data-id');
+						fetch(`/remove-from-cart/${itemId}`, {method: 'POST'}).then(response => response.json()).then(data => {
+							if (data.success) {
+								itemElement.remove();
+								updateTotal();
+							}
+						});
+					});
+				});
+
+				// Increase or decrease item quantity
+				document.querySelectorAll('.cart-item-quantity .increase-quantity, .cart-item-quantity .decrease-quantity').forEach(button => {
+					button.addEventListener('click', function () {
+						const itemElement = button.closest('.cart-item');
+						const itemId = itemElement.getAttribute('data-id');
+						const input = itemElement.querySelector('input');
+						let newQuantity = parseInt(input.value);
+
+						if (button.classList.contains('increase-quantity')) {
+							newQuantity++;
+						} else {
+							newQuantity = Math.max(1, newQuantity - 1);
+						}
+
+						fetch('/update-cart', {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							body: JSON.stringify(
+								{id: itemId, quantity: newQuantity}
+							)
+						}).then(response => response.json()).then(data => {
+							if (data.success) {
+								input.value = newQuantity;
+								updateTotal();
+							}
+						});
+					});
+				});
+
+				// Update cart total on page load
+				updateTotal();
+			});
+		</script>
+	</body>
+</html>

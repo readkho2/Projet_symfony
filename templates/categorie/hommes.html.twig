@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pieds Parfaits</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .product-item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .product-item h3 {
+            margin: 10px 0;
+        }
+
+        .product-item p {
+            margin: 5px 0;
+        }
+
+        .product-item .price {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .nav {
+            background-color: #f0f0f0;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .cart {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart i {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer img {
+            width: 100px;
+        }
+
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-item .rating {
+            display: flex;
+            align-items: center;
+        }
+
+        .product-item .rating i {
+            font-size: 16px;
+            color: #ffc107;
+            margin-right: 5px;
+        }
+
+        .product-item .price {
+            font-size: 18px;
+        }
+
+        .product-item button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div class="logo">
+                <img src="https://thumbs.dreamstime.com/z/fila-reebok-adidas-nike-brooks-puma-new-balance-mizuno-asics-logos-sports-equipment-sportswear-company-kyiv-ukraine-196926314.jpg?w=360" alt="Pieds Parfaits">
+                <span>NOS PRODUITS</span>
+            </div>
+             <div class="cart">
+                  <a href="{{ path('panier') }}"><i class="fas fa-shopping-cart"></i> Voir le panier</a>
+            </div>
+               
+            <div class="cart">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="product-list">
+             <div class="product-item" data-id="1" data-name="Air Jordan 1 Mid" data-price="179.90">
+                <img src="https://th.bing.com/th/id/OIP.SOZC1yoVcrcei6aRvkvoKgHaEM?rs=1&pid=ImgDetMain" alt="Product 1">
+                <h3>Air Jordan 1 Mid</h3>
+                <p>Confectionnées avec un empeigne en cuir véritable et une semelle intermédiaire en mousse, ces chaussures sont conçues pour le confort et la durabilité.</p>
+                <div class="price">179,90 €</div>
+                <button onclick="addToCart(event)">Acheter</button>
+               
+            </div>
+           <div class="product-item" data-id="2" data-name="Air Max 90" data-price="139.90">
+                <img src="https://th.bing.com/th/id/OIP.i1uZZ8MDNKEyI_-98OmsSgHaFP?rs=1&pid=ImgDetMain" alt="Product 2">
+                <h3>Air Max 90</h3>
+                <p>Chaussures pour hommes</p>
+                <p>Un design emblématique avec une technologie d'amorti visible pour un confort supérieur.</p>
+                <div class="price">139,90 €</div>
+               <button onclick="addToCart(event)">Acheter</button>
+            </div>
+             <div class="product-item" data-id="3" data-name="converse all star" data-price="59,60">
+                <img src="https://th.bing.com/th/id/R.7461dd5b08e428b86ea45658812e91f9?rik=D%2fQzp6D5UawcTQ&pid=ImgRaw&r=0" alt="Product 3">
+                <h3>Converse All Star</h3>
+                <p>Chaussures hommes</p>
+                <p>Des baskets classiques pour un style intemporel et confortable pour les petits pieds.</p>
+                <div class="price">59,90 €</div>
+                <button onclick="addToCart(event)">Acheter</button>
+            </div>
+                <div class="product-item" data-id="4" data-name="Adidas ultra sport " data-price="189,90">
+                <img src="https://th.bing.com/th/id/R.ff7766ad78760c65850396c684f8ac85?rik=tWq7Tu9AUkbEOQ&pid=ImgRaw&r=0" alt="Product 4">
+                <h3>Adidas Ultraboost</h3>
+                <p>Chaussures de sport</p>
+                <p>Parfaites pour la course, avec un amorti supérieur et un ajustement parfait.</p>
+                <div class="price">189,90 €</div>
+              <button onclick="addToCart(event)">Acheter</button>
+            </div>
+            <div class="product-item" data-id="5" data-name="nike air force " data-price="129,90">
+                <img src="https://www.theairmax270.com/wp-content/uploads/2018/10/Nike-Air-Force-1-Upstep-White-Royal-Blue-6.jpeg" alt="Product 5">
+                <h3>Nike Air Force 1</h3>
+                <p>Chaussures pour homme</p>
+                <p>Un classique revisité avec un design moderne et un confort amélioré.</p>
+                <div class="price">129,90 €</div>
+                <button onclick="addToCart(event)">Acheter</button>
+            </div>
+           <div class="product-item" data-id="5" data-name="puma suede" data-price="79,90">
+                <img src="https://th.bing.com/th/id/OIP.KvwJJS1x4XLqh0xvORgn9QHaHa?rs=1&pid=ImgDetMain" alt="Product 6">
+                <h3>Puma Suede Classic</h3>
+                <p>Style intemporel et polyvalent pour une utilisation quotidienne.</p>
+                <div class="price">79,90 €</div>
+                <button onclick="addToCart(event)">Acheter</button>
+            </div>
+               <div class="product-item" data-id="6" data-name="Reebok" data-price="89,90">
+               
+                <img src="https://th.bing.com/th/id/R.28a894944e9d8300a632ca1bbf768896?rik=ynn3uZTieeIwOg&pid=ImgRaw&r=0" alt="Product 7">
+                <h3>Reebok Classic</h3>
+                <p>Confort classique et style rétro pour un look décontracté.</p>
+                <div class="price">89,90 €</div>
+                <button onclick="addToCart(event)">Acheter</button>
+            </div>
+                <div class="product-item" data-id="7" data-name="NEW BLANCE 574" data-price="99,90">
+                <img src="https://th.bing.com/th/id/OIP.was0gSSphPEXRVOC1eMWGwHaHa?rs=1&pid=ImgDetMain" alt="Product 8">
+                <h3>New Balance 574</h3>
+                <div class="price">99,90 €</div>
+              <button onclick="addToCart(event)">Acheter</button>
+            </div>
+            <div class="product-item" data-id="8" data-name="VANS OLD SCHOOL" data-price="69,90">
+                <img src="https://th.bing.com/th/id/OIP.4p_atDiLB0iMV4OYIVksYgHaHa?rs=1&pid=ImgDetMain" alt="Product 9">
+                <h3>Vans Old Skool</h3>
+                <p>Chaussures décontractées</p>
+                <div class="price">69,90 €</div>
+                <button onclick="addToCart(event)">Acheter</button>
+            </div>
+        <div class="product-item" data-id="9" data-name="TIMBERLAND CLASSIC" data-price="199,90">
+                <img src="https://th.bing.com/th/id/R.37051ac1927a6ca7a527819e1d95b540?rik=QIoHtBHCXUi21g&pid=ImgRaw&r=0" alt="Product 10">
+                <h3>Timberland Classic</h3>
+                <p>Bottes</p>
+                <div class="price">199,90 €</div>
+              <button onclick="addToCart(event)">Acheter</button>>
+            </div>
+       
+    </div>
+
+    <footer class="footer">
+        <p>© 2023 Pieds Parfaits. Tous droits réservés.</p>
+    </footer>
+    <script>
+  function addToCart(event) {
+    event.preventDefault();
+
+    const productElement = event.target.closest('.product-item');
+    const productId = productElement.getAttribute('data-id');
+    const productName = productElement.getAttribute('data-name');
+    const productPrice = parseFloat(productElement.getAttribute('data-price'));
+    const productImage = productElement.querySelector('img').src;
+
+    const cartItem = {
+        id: productId,
+        name: productName,
+        price: productPrice,
+        image: productImage,
+        quantity: 1 // Ajouter la quantité par défaut
+    };
+
+    fetch('/add-to-cart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cartItem)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Produit ajouté au panier !');
+        } else {
+            alert('Erreur lors de l\'ajout du produit au panier');
+        }
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'ajout du produit au panier:', error);
+        alert('Erreur lors de l\'ajout du produit au panier');
+    });
+}
+
+</script>
+</body>
+</html>

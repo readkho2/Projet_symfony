@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PAIEMENT</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        .detail {
+            margin-bottom: 20px;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #eee;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .button.pay {
+            background-color: black;
+            color: white;
+        }
+        .payment-icons {
+            text-align: center;
+        }
+        .payment-icons img {
+            width: 50px;
+            margin: 0 5px;
+        }
+        .message {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #4caf50;
+            background-color: #dff0d8;
+            color: #3c763d;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>PAIEMENT:</h2>
+        <div class="detail">
+        </div>
+        <input type="text" class="button" placeholder="NOM PRENOM" id="name">
+        <input type="text" class="button" placeholder="NUMERO DE LA CARTE" id="cardNumber">
+        <input type="text" class="button" placeholder="CVC" id="cvc">
+        <input type="text" class="button" placeholder="DATE EXPIRATION : MM/AAAA" id="expirationDate">
+        <button class="button pay" onclick="processPayment()">PAYER</button>
+        <div class="payment-icons">
+            <img src="https://clickamericana.com/wp-content/uploads/BankAmericard-becomes-Visa-card-1977.jpg" alt="VISA">
+            <img src="https://nudatasecurity.com/wp-content/uploads/2017/03/Mastercard-logo-sq.png" alt="Mastercard">
+        </div>
+        <div class="message" id="confirmationMessage">
+            Merci pour votre commande ! Votre commande a été bien acceptée. Vous recevrez le récapitulatif de la commande par mail.
+        </div>
+    </div>
+    <script>
+       function processPayment() {
+            // Récupérer les valeurs des champs de saisie
+            const name = document.getElementById('name').value;
+            const cardNumber = document.getElementById('cardNumber').value;
+            const cvc = document.getElementById('cvc').value;
+            const expirationDate = document.getElementById('expirationDate').value;
+
+            // Vérifier si tous les champs sont remplis
+            if (name && cardNumber && cvc && expirationDate) {
+                // Vérifier la longueurif (name.length < 5 || name.length > 50) {
+                    alert("Le nom doit contenir entre 5 et 50 caractères.");
+                    return;
+                }
+                if (cardNumber.length < 16 || cardNumber.length > 19) {
+                    alert("Le numéro de carte doit contenir entre 16 et 19 chiffres.");
+                    return;
+                }
+                if (cvc.length < 3 || cvc.length > 4) {
+                    alert("Le CVC doit contenir entre 3 et 4 chiffres.");
+                    return;
+                }
+                if (expirationDate.length < 7 || expirationDate.length > 7) {
+                    alert("La date d'expiration doit être au format MM/AAAA.");
+                    return;
+                }
+
+                // Afficher le message de confirmation
+                document.getElementById('confirmationMessage').style.display = 'block';
+
+                // Rediriger vers la page panier
+                window.location.href = '/panier';
+            } else {
+                alert("Veuillez remplir tous les champs.");
+            }
+    </script>
+</body>
+</html>

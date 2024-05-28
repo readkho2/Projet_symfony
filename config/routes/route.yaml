@@ -1,0 +1,26 @@
+home:
+    path: /
+    controller: App\Controller\HomeController::index
+
+categorie:
+    path: '/categorie/{type}'
+    controller: App\Controller\HomeController::categorie
+security_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+app_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+panier:
+  path: /panier
+  controller: App\Controller\PanierController::index
+paiement:
+    path: /paiement
+    controller: App\Controller\PaiementController::index
+app_register:
+    path: /register
+    controller: App\Controller\Security\RegisterController::register
+add_to_cart:
+  path: /add-to-cart
+  controller: App\Controller\CartController::addToCart
+  methods: [POST]

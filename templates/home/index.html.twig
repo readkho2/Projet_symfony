@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pieds Parfaits - Accueil</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        header .logo img {
+            width: 100px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .icons img {
+            width: 30px;
+            height: 30px;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        .slider {
+            width: 90%;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            width: 500%;
+            height: 100%;
+            animation: slide 20s infinite;
+        }
+
+        .slides img {
+            width: 20%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0%); }
+            20% { transform: translateX(0%); }
+            25% { transform: translateX(-20%); }
+            45% { transform: translateX(-20%); }
+            50% { transform: translateX(-40%); }
+            70% { transform: translateX(-40%); }
+            75% { transform: translateX(-60%); }
+            95% { transform: translateX(-60%); }
+            100% { transform: translateX(-80%); }
+        }
+
+        .nouveautes {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .nouveautes h2 {
+            margin-bottom: 20px;
+        }
+
+        .product-list {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .product-item {
+            width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .product-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-item button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .footer img {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ asset('images/Logo2.png') }}" alt="Logo">
+        </div>
+        <nav>
+            <a href="{{ path('categorie', {'type': 'homme'}) }}">NOS PRODUITS!!</a>
+        </nav>
+        <div class="icons">
+            <a href="{{ path('panier') }}"><img src="{{ asset('images/Panier.png') }}" alt="Panier"></a>
+            <a href="{{ path('app_login') }}"><img src="{{ asset('images/Compte.png') }}" alt="Compte"></a>
+        </div>
+    </header>
+
+    <div class="slider">
+        <div class="slides">
+            <img src="https://www.basketusa.com/wp-content/uploads/2016/07/air-jordanXXXI-3.jpg" alt="Slider Image 1">
+            
+            <img src="https://th.bing.com/th/id/R.16cc32713c74d3def968967d83c787a9?rik=a22%2bFgVEB9O%2fhw&riu=http%3a%2f%2fd3nt9em9l1urz8.cloudfront.net%2fmedia%2fcatalog%2fproduct%2fcache%2f3%2fimage%2f1100x%2f040ec09b1e35df139433887a97daa66f%2fj%2fo%2fjo845098-102.jpg&ehk=R1UIz16vx9Ne0KGa9AwvQu6BvOjkR4HlgeYeWYXNi0g%3d&risl=&pid=ImgRaw&r=0" alt="Slider Image 2">
+            
+            <img src="https://th.bing.com/th/id/OIP.zPO1c1b8JBOZPORUdzs1_AAAAA?rs=1&pid=ImgDetMain" alt="Slider Image 3">
+            
+            <img src="https://n.nordstrommedia.com/id/sr3/ee2aef70-d455-41b9-90a9-63d2fdd5bec4.jpeg?crop=pad&pad_color=FFF&format=jpeg&trim=color&trimcolor=FFF&w=780&h=838&dpr=2" alt="Slider Image 4">
+            
+            <img src="https://th.bing.com/th/id/R.91ff0a13bb97d17322eb67b45e2f29d2?rik=xZNdEL2jwivFFA&pid=ImgRaw&r=0" alt="Slider Image 5">
+        </div>
+    </div>
+
+    <div class="nouveautes">
+        <h2>NOUVEAUTES</h2>
+        <div class="product-list">
+            <div class="product-item">
+                <img src="https://th.bing.com/th/id/R.1df94fbe80a9907e5741370ffb88dd61?rik=8h6GOpozPTwyIQ&riu=http%3a%2f%2fwww.covincennes.fr%2f2020%2fgarcon%2fnike-air-jordan-1-bleu-pour-homme-xaeoqce.jpg&ehk=ajHyNzrkFRZG3IyUdp34bR27ghohKDA3LAKhVyhv8S4%3d&risl=&pid=ImgRaw&r=0" alt="Product 1">
+            </div>
+            <div class="product-item">
+                <img src="https://www.sneakerfiles.com/wp-content/uploads/2016/05/air-jordan-11-gold-bar-custom-3.jpg" alt="Product 2">
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2023 Pieds Parfaits. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
